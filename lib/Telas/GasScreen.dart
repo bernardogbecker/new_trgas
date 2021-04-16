@@ -7,7 +7,7 @@ class GasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return FundoTrGas(
+    return FundoTrGas2(
       size: size,
       children: [
         Padding(

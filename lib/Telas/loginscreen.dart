@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../widgetsTR.dart';
 
-
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -62,7 +61,10 @@ class LoginScreen extends StatelessWidget {
                                 LoginButton(
                                   texto: 'Login',
                                   size: size,
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, 'chooseScreen');
+                                  },
                                 ),
                               ],
                             ),
@@ -71,20 +73,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     LoginWithButton(size: size),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                            width: size.width * 0.8 / 3,
-                            child: Image.asset(
-                              'imagens/Logo.png',
-                              fit: BoxFit.contain,
-                            )),
-                        SizedBox(
-                          width: size.width * 0.1,
-                        ),
-                      ],
-                    ),
+                    LogoTr(size: size),
                   ],
                 ),
               ),
@@ -95,3 +84,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
