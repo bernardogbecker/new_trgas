@@ -24,7 +24,7 @@ class _PotenciaInstaladaScreenState extends State<PotenciaInstaladaScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return FundoTrGas(
+    return FundoTrGas2(
       size: size,
       children: [
         Padding(
@@ -56,7 +56,7 @@ class _PotenciaInstaladaScreenState extends State<PotenciaInstaladaScreen> {
                   child: ChooseButton(
                       size: size,
                       changesize: 0.07,
-                      changeTextsize: 0.015,
+                      changeTextsize: 12,
                       padding: false,
                       texto: '${item["Aparelho"]}\n${item["Contagem"]}',
                       onTap: () {

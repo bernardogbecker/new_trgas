@@ -25,7 +25,7 @@ class _TesCotovelosScreenState extends State<TesCotovelosScreen> {
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
-    return FundoTrGas(
+    return FundoTrGas2(
       size: size,
       children: [
         Padding(

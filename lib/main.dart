@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'Telas/ChooseScreen.dart';
+import 'Telas/ComprimentosScreen.dart';
+import 'Telas/DesniveisScreen.dart';
 import 'Telas/GasScreen.dart';
 import 'Telas/MultiResidencialScreen.dart';
+import 'Telas/PotenciaInstaladaScreen.dart';
+import 'Telas/TesCotovelosScreen.dart';
+import 'Telas/TrechosScreen.dart';
 import 'Telas/loginscreen.dart';
 
 void main() async {
@@ -25,12 +30,12 @@ class TrGas extends StatelessWidget {
         'chooseScreen': (context) => ChooseScreen(),
         'multiResidencialScreen': (context) => MultiResidencialScreen(),
         'gasScreen': (context) => GasScreen(),
-        /*'trechosScreen': (context) => TrechosScreen(),
+        'trechosScreen': (context) => TrechosScreen(),
         'comprimentosScreen': (context) => ComprimentoScreen(),
         'desniveisScreen': (context) => DesniveisScreen(),
         'tesCotovelosScreen': (context) => TesCotovelosScreen(),
         'potenciaInstaladaScreen': (context) => PotenciaInstaladaScreen(),
-        'diametrosScreen': (context) => DiametrosScreen(),
+        /*'diametrosScreen': (context) => DiametrosScreen(),
         'pdfScreen': (context) => PdfScreen(),
         'historicoScreen': (context) => HistoricoScreen(), */
       },

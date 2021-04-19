@@ -38,7 +38,7 @@ class _TrechosScreenState extends State<TrechosScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return FundoTrGas(
+    return FundoTrGas2(
       size: size,
       children: [
         Padding(
@@ -70,10 +70,13 @@ class _TrechosScreenState extends State<TrechosScreen> {
                 controller: _trecho,
               ),
               ChooseSmallerButton(
+                padding: false,
                 size: size,
                 texto: 'Confirmar',
                 onTap: () {
-                  addTrecho(trecho: _trecho.text, size: size);
+                  if (_trecho.text != '') {
+                    addTrecho(trecho: _trecho.text, size: size);
+                  }
                   _trecho.clear();
                 },
               ),
@@ -87,8 +90,10 @@ class _TrechosScreenState extends State<TrechosScreen> {
             ForwardIconButton(
               size: size,
               onPressed: () {
-                if (trechosGlobal.isNotEmpty)
+                print(trechosGlobal);
+                if (trechosGlobal.isNotEmpty) {
                   Navigator.pushNamed(context, 'comprimentosScreen');
+                }
               },
             ),
           ],

@@ -50,7 +50,7 @@ class _DesniveisScreenState extends State<DesniveisScreen> {
     size = MediaQuery.of(context).size;
     createTrechosWidgets();
     create = false;
-    return FundoTrGas(
+    return FundoTrGas2(
       size: size,
       children: [
         Padding(

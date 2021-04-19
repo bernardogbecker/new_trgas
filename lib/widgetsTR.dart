@@ -233,15 +233,26 @@ class ChooseButton extends StatelessWidget {
   final Size size;
   final String texto;
   final Function onTap;
-  const ChooseButton({Key key, this.texto, this.onTap, this.size})
+  final bool padding;
+  final double changesize;
+  final double changeTextsize;
+  const ChooseButton(
+      {Key key,
+      this.texto,
+      this.onTap,
+      this.size,
+      this.padding = true,
+      this.changesize = 0.1,
+      this.changeTextsize = 34})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
+      padding:
+          EdgeInsets.symmetric(horizontal: (padding) ? size.width * 0.1 : 0),
       child: Container(
         width: double.infinity,
-        height: 100,
+        height: size.height * changesize,
         decoration: BoxDecoration(
           color: ktriblue,
           boxShadow: [shadow1black, shadow1blue],
@@ -253,7 +264,8 @@ class ChooseButton extends StatelessWidget {
             onPressed: onTap,
             child: Text(
               texto,
-              style: ktextTituloStyle.copyWith(fontSize: 34),
+              style: ktextTituloStyle.copyWith(fontSize: changeTextsize),
+              textAlign: TextAlign.center,
             ),
           ),
         ),
@@ -278,6 +290,121 @@ class BackIconButton extends StatelessWidget {
             color: Colors.white,
           ),
           onPressed: () => Navigator.pop(context)),
+    );
+  }
+}
+
+class WriteButton extends StatelessWidget {
+  final Size size;
+  final String labeltext;
+  final TextEditingController controller;
+  final TextInputType keyboardType;
+  final Function onChanged;
+  final bool changeSizeWidth;
+
+  const WriteButton(
+      {Key key,
+      this.size,
+      this.labeltext,
+      this.controller,
+      this.keyboardType,
+      this.onChanged,
+      this.changeSizeWidth = false})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: (changeSizeWidth) ? size.width * 0.6 : size.width * 0.35,
+      height: size.height * 0.06,
+      decoration: BoxDecoration(
+        color: ktriblue,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [shadow1black, shadow1blue],
+      ),
+      child: Row(
+        children: [
+          SizedBox(width: 15),
+          Expanded(
+            child: TextField(
+              keyboardType: keyboardType,
+              controller: controller,
+              obscureText: false,
+              onChanged: onChanged,
+              style: ktextTituloStyle.copyWith(fontSize: 12),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                labelText: labeltext,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ForwardIconButton extends StatelessWidget {
+  final Size size;
+  final Function onPressed;
+
+  const ForwardIconButton({Key key, this.size, this.onPressed})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(right: size.width * 0.1),
+      child: IconButton(
+        icon: Icon(
+          Icons.arrow_forward,
+          size: size.height * 0.05,
+          color: Colors.white,
+        ),
+        onPressed: onPressed,
+      ),
+    );
+  }
+}
+
+class ChooseSmallerButton extends StatelessWidget {
+  final Size size;
+  final String texto;
+  final Function onTap;
+  final bool padding;
+  final double changesize;
+  const ChooseSmallerButton(
+      {Key key,
+      this.texto,
+      this.onTap,
+      this.size,
+      this.padding = true,
+      this.changesize})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding:
+          EdgeInsets.symmetric(horizontal: (padding) ? size.width * 0.1 : 0),
+      child: Container(
+        width: size.width * 0.2,
+        height: size.height * 0.06,
+        decoration: BoxDecoration(
+          color: ktriblue,
+          boxShadow: [shadow1black, shadow1blue],
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: FlatButton(
+            onPressed: onTap,
+            child: Text(
+              texto,
+              style: ktextTituloStyle.copyWith(fontSize: 12),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
