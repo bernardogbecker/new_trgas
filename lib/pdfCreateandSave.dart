@@ -7,8 +7,8 @@ import 'Logica.dart';
 String documentpath;
 writeOnPdf() {
   String gasescolhido;
-  if (gnv) {
-    gasescolhido = 'GNV';
+  if (gn) {
+    gasescolhido = 'GN';
   } else {
     gasescolhido = 'GLP';
   }

@@ -27,7 +27,7 @@ class GasScreen extends StatelessWidget {
                 size: size,
                 texto: 'Gás Natural',
                 onTap: () {
-                  gnv = true;
+                  gn = true;
                   Navigator.pushNamed(context, 'trechosScreen');
                 },
               ),
@@ -38,7 +38,7 @@ class GasScreen extends StatelessWidget {
                 size: size,
                 texto: 'GLP',
                 onTap: () {
-                  gnv = false;
+                  gn = false;
                   Navigator.pushNamed(context, 'trechosScreen');
                 },
               ),
