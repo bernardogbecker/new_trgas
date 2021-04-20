@@ -14,7 +14,7 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double porcentagem = 11;
-    return FundoTrGas(
+    return FundoTrGas2(
       size: size,
       children: [
         Padding(
@@ -36,11 +36,12 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
               return ChooseButton(
                 size: size,
                 texto: '${trecho.nome} |\n${trecho.diametroEscolhido}',
-                changesizeWidth: 0.1,
-                changeTextsize: 0.015,
+                changesizeWidth: 0.15,
+                changeTextsize: 12,
                 changePadding: 0.02,
                 onTap: () {
                   showModalBottomSheet(
+                    backgroundColor: ktrigrey1,
                     context: context,
                     isScrollControlled: true,
                     builder: (context) => SingleChildScrollView(
@@ -182,19 +183,20 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
         ChooseButton(
           size: size,
           texto: trechosGlobal[0].pinicial.toString(),
-          changesizeWidth: 0.1,
-          changeTextsize: 0.015,
+          changesizeWidth: 0.15,
+          changeTextsize: 12,
           changePadding: 0.05,
           changesize: 0.05,
           onTap: () {
             showModalBottomSheet(
+              backgroundColor: ktrigrey1,
               context: context,
               isScrollControlled: true,
               builder: (context) => SingleChildScrollView(
                 child: Container(
                   child: AddTaskScreen(
                     size: size,
-                    ontap: (String pinicial) {
+                    onTap: (String pinicial) {
                       trechosGlobal[0].pinicial = double.parse(pinicial);
                       setState(() {});
                       Navigator.pop(context);
@@ -259,16 +261,17 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
           size: size,
           texto: 'Ver resultado completo',
           changesize: 0.05,
-          changeTextsize: 0.015,
+          changeTextsize: 15,
           onTap: () async {
             showModalBottomSheet(
+              backgroundColor: ktrigrey1,
               context: context,
               isScrollControlled: true,
               builder: (context) => SingleChildScrollView(
                 child: Container(
-                  child: AddnomeScreen(
+                  child: AddNomeScreen(
                     size: size,
-                    ontap: (String projeto) async {
+                    onTap: (String projeto) async {
                       nomedoProjeto = projeto;
                       Navigator.pop(context);
                       await writeOnandSavePdf();

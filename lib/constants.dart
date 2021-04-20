@@ -29,6 +29,12 @@ BoxShadow shadow1black = BoxShadow(
   blurRadius: 6,
 );
 
+BoxShadow shadow1white = BoxShadow(
+  color: Color.fromRGBO(255, 255, 255, 0.5),
+  offset: Offset(-6, -6),
+  blurRadius: 6,
+);
+
 TextStyle ktextTRGasStyle = TextStyle(
   fontFamily: 'ProductSans',
   fontWeight: FontWeight.w700,
