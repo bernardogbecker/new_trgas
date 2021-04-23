@@ -606,3 +606,69 @@ class ChooseButtonPressao extends StatelessWidget {
     );
   }
 }
+
+class HistoricoButton extends StatelessWidget {
+  final Size size;
+  final String nome;
+  final DateTime dateTime;
+  final Function onTap;
+  final bool padding;
+  final double changesize;
+  final double changeTextsize;
+  final double changesizeWidth;
+  final double changePadding;
+  const HistoricoButton({
+    Key key,
+    this.nome,
+    this.onTap,
+    this.size,
+    this.padding = true,
+    this.changesize = 0.1,
+    this.changeTextsize = 16,
+    this.changesizeWidth,
+    this.changePadding = 0.1,
+    this.dateTime,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: (padding) ? size.width * changePadding : 0),
+      child: Container(
+        width: (changesizeWidth == null)
+            ? double.infinity
+            : size.width * changesizeWidth,
+        height: size.height * changesize,
+        decoration: BoxDecoration(
+          color: ktriblue,
+          boxShadow: [shadow1black, shadow1blue],
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: FlatButton(
+            onPressed: onTap,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text(
+                    nome,
+                    style: ktextTituloStyle.copyWith(fontSize: changeTextsize),
+                    textAlign: TextAlign.center,
+                  ),
+                  Spacer(),
+                  Text(
+                    '${dateTime.day} - ${dateTime.month} - ${dateTime.year}',
+                    style: ktextTituloStyle.copyWith(fontSize: changeTextsize),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

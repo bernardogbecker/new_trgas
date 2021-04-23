@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "339430838534",
+    "project_id": "trgasbackend",
+    "storage_bucket": "trgasbackend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339430838534:android:ccc59fff4764e1d7928e87",
+        "android_client_info": {
+          "package_name": "com.trichesEngenharia.trGas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339430838534-6tthjiitg4fi9ba8svo8uavl8v2a438q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.trichesEngenharia.trGas",
+            "certificate_hash": "1b55fd39185d13537b19b86b38c456a1a1119b51"
+          }
+        },
+        {
+          "client_id": "339430838534-nrqmuqddo6vnor9mhp2ft6biavd58jfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtNrq9FoL7n11tXjU3LFcrN-EOL4GJhJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339430838534-nrqmuqddo6vnor9mhp2ft6biavd58jfg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

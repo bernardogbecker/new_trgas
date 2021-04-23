@@ -3,6 +3,7 @@ import '../Logica.dart';
 import '../pdfCreateandSave.dart';
 import '../widgetsTR.dart';
 import '../constants.dart';
+import 'package:universal_html/html.dart' as html;
 
 class DiametrosScreen extends StatefulWidget {
   @override
@@ -10,10 +11,15 @@ class DiametrosScreen extends StatefulWidget {
 }
 
 class _DiametrosScreenState extends State<DiametrosScreen> {
+  double porcentagem = 100;
+  bool recalculate = false;
   @override
   Widget build(BuildContext context) {
+    if (recalculate) {
+      porcentagem =
+          100 - trechosGlobal.last.pfinal / trechosGlobal.first.pinicial * 100;
+    }
     Size size = MediaQuery.of(context).size;
-    double porcentagem = 11;
     return FundoTrGas2(
       size: size,
       children: [
@@ -59,6 +65,7 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                                 Navigator.pop(context);
                                 setState(() {
                                   trecho.diametroEscolhido = '4';
+                                  if (recalculate) calculoGeral();
                                 });
                               },
                             ),
@@ -69,6 +76,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                               onTap: () {
                                 Navigator.pop(context);
                                 setState(() {
+                                  if (recalculate) calculoGeral();
+
                                   trecho.diametroEscolhido = '3';
                                 });
                               },
@@ -80,6 +89,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                               onTap: () {
                                 Navigator.pop(context);
                                 setState(() {
+                                  if (recalculate) calculoGeral();
+
                                   trecho.diametroEscolhido = '2.1/2';
                                 });
                               },
@@ -91,6 +102,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                               onTap: () {
                                 Navigator.pop(context);
                                 setState(() {
+                                  if (recalculate) calculoGeral();
+
                                   trecho.diametroEscolhido = '2';
                                 });
                               },
@@ -102,6 +115,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                               onTap: () {
                                 Navigator.pop(context);
                                 setState(() {
+                                  if (recalculate) calculoGeral();
+
                                   trecho.diametroEscolhido = '1.1/2';
                                 });
                               },
@@ -113,6 +128,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                               onTap: () {
                                 Navigator.pop(context);
                                 setState(() {
+                                  if (recalculate) calculoGeral();
+
                                   trecho.diametroEscolhido = '1.1/4';
                                 });
                               },
@@ -124,6 +141,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                               onTap: () {
                                 Navigator.pop(context);
                                 setState(() {
+                                  if (recalculate) calculoGeral();
+
                                   trecho.diametroEscolhido = '1';
                                 });
                               },
@@ -135,6 +154,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                               onTap: () {
                                 Navigator.pop(context);
                                 setState(() {
+                                  if (recalculate) calculoGeral();
+
                                   trecho.diametroEscolhido = '3/4';
                                 });
                               },
@@ -146,6 +167,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                               onTap: () {
                                 Navigator.pop(context);
                                 setState(() {
+                                  if (recalculate) calculoGeral();
+
                                   trecho.diametroEscolhido = '1/2';
                                 });
                               },
@@ -157,6 +180,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                               onTap: () {
                                 Navigator.pop(context);
                                 setState(() {
+                                  if (recalculate) calculoGeral();
+
                                   trecho.diametroEscolhido = '3/8';
                                 });
                               },
@@ -198,6 +223,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                     size: size,
                     onTap: (String pinicial) {
                       trechosGlobal[0].pinicial = double.parse(pinicial);
+                      calculoGeral();
+                      recalculate = true;
                       setState(() {});
                       Navigator.pop(context);
                     },
@@ -225,8 +252,10 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                   var trecho = trechosGlobal[index];
                   return Center(
                     child: Text(
-                      '${trecho.pinicial}   ${trecho.nome}    ${trecho.pfinal}',
-                      style: ktextTituloStyle.copyWith(fontSize: 30),
+                      (recalculate)
+                          ? '${trecho.pinicial.toStringAsFixed(2)}   ${trecho.nome}    ${trecho.pfinal.toStringAsFixed(2)}'
+                          : '${trecho.nome}',
+                      style: ktextPressaoStyle,
                     ),
                   );
                 },
@@ -247,11 +276,11 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                'Perda de pressão: $porcentagem %',
+                'Perda de pressão: ${porcentagem.toStringAsFixed(2)} %',
                 style: ktextTituloStyle.copyWith(fontSize: 15),
               ),
               Icon(
-                (porcentagem <= 10) ? Icons.check : Icons.close,
+                (porcentagem <= 35) ? Icons.check : Icons.close,
                 color: Colors.white,
               ),
             ],
@@ -274,11 +303,12 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                     onTap: (String projeto) async {
                       nomedoProjeto = projeto;
                       Navigator.pop(context);
-                      await writeOnandSavePdf();
-                      Navigator.pushNamed(
-                        context,
-                        'pdfScreen',
-                      );
+                      final pdf = writeOnPdf();
+                      final bytes = await pdf.save();
+                      final blob = html.Blob([bytes], 'application/pdf');
+                      final url = html.Url.createObjectUrlFromBlob(blob);
+                      html.window.open(url, "_blank");
+                      html.Url.revokeObjectUrl(url);
                     },
                   ),
                 ),

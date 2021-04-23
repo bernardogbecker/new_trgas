@@ -31,6 +31,7 @@ dependencies:
   pdf: ^2.1.0
   path_provider: 
   flutter_full_pdf_viewer: ^1.0.6
+  universal_html: ^1.2.4
 
   #FirebasePlugins
   firebase_storage: "^7.0.0"
@@ -91,6 +92,10 @@ flutter:
         - asset: fonts/ProductSansBold.ttf
           weight: 700
         - asset: fonts/ProductSansRegular.ttf
+          weight: 400
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMonoRegular.ttf
           weight: 400
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

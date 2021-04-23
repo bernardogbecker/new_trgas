@@ -4,6 +4,7 @@ import 'Telas/ComprimentosScreen.dart';
 import 'Telas/DesniveisScreen.dart';
 import 'Telas/DiametrosScreen.dart';
 import 'Telas/GasScreen.dart';
+import 'Telas/HistoricoScreen.dart';
 import 'Telas/MultiResidencialScreen.dart';
 import 'Telas/PotenciaInstaladaScreen.dart';
 import 'Telas/TesCotovelosScreen.dart';
@@ -37,8 +38,8 @@ class TrGas extends StatelessWidget {
         'tesCotovelosScreen': (context) => TesCotovelosScreen(),
         'potenciaInstaladaScreen': (context) => PotenciaInstaladaScreen(),
         'diametrosScreen': (context) => DiametrosScreen(),
-        /*'pdfScreen': (context) => PdfScreen(),
-        'historicoScreen': (context) => HistoricoScreen(), */
+        /*'pdfScreen': (context) => PdfScreen(), */
+        'historicoScreen': (context) => HistoricoScreen(),
       },
     );
   }

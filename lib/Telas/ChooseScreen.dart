@@ -35,7 +35,9 @@ class ChooseScreen extends StatelessWidget {
               ChooseButton(
                 size: size,
                 texto: 'Ver Histórico',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, 'historicoScreen');
+                },
               ),
             ],
           ),

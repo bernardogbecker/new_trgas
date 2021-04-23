@@ -14,7 +14,7 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return FundoTrGas(
+    return FundoTrGas2(
       size: size,
       children: [
         Padding(
@@ -33,8 +33,8 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
               ChooseButton(
                 size: size,
                 texto: 'Data',
-                changesizeWidth: 0.13,
-                changeTextsize: 0.02,
+                changesizeWidth: 0.2,
+                changeTextsize: 12,
                 changesize: 0.05,
                 padding: false,
                 onTap: () {
@@ -47,8 +47,8 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
                 size: size,
                 texto: 'Nome',
                 padding: false,
-                changeTextsize: 0.02,
-                changesizeWidth: 0.13,
+                changeTextsize: 12,
+                changesizeWidth: 0.2,
                 changesize: 0.05,
                 onTap: () {
                   setState(() {
@@ -62,6 +62,7 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
         StreamBuilder<QuerySnapshot>(
           stream: firestore.collection('Projetos').orderBy(filtro).snapshots(),
           builder: (context, snapshot) {
+            print(snapshot);
             return Container(
               width: size.width * 0.6,
               height: size.height * 0.4,
@@ -76,7 +77,6 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
                           child: HistoricoButton(
                               size: size,
                               changesize: 0.07,
-                              changeTextsize: 0.015,
                               padding: false,
                               nome: doc['Nome'],
                               dateTime: docDate,

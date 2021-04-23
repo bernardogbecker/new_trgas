@@ -90,7 +90,6 @@ class _TrechosScreenState extends State<TrechosScreen> {
             ForwardIconButton(
               size: size,
               onPressed: () {
-                print(trechosGlobal);
                 if (trechosGlobal.isNotEmpty) {
                   Navigator.pushNamed(context, 'comprimentosScreen');
                 }

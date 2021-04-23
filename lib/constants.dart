@@ -53,3 +53,10 @@ TextStyle ktextstylePdfbutton = TextStyle(
     color: Colors.black,
     fontFamily: 'ProductSans',
     fontWeight: FontWeight.w700);
+
+TextStyle ktextPressaoStyle = TextStyle(
+  fontFamily: 'RobotoMono',
+  fontWeight: FontWeight.w400,
+  fontSize: 20,
+  color: Colors.white,
+);
