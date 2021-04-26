@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'Telas/ChooseScreen.dart';
 import 'Telas/ComprimentosScreen.dart';
@@ -10,10 +11,11 @@ import 'Telas/PotenciaInstaladaScreen.dart';
 import 'Telas/TesCotovelosScreen.dart';
 import 'Telas/TrechosScreen.dart';
 import 'Telas/loginscreen.dart';
+import 'Telas/pdfScreen.dart';
 
 void main() async {
-  /*WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();*/
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(TrGas());
 }
 
@@ -38,7 +40,7 @@ class TrGas extends StatelessWidget {
         'tesCotovelosScreen': (context) => TesCotovelosScreen(),
         'potenciaInstaladaScreen': (context) => PotenciaInstaladaScreen(),
         'diametrosScreen': (context) => DiametrosScreen(),
-        /*'pdfScreen': (context) => PdfScreen(), */
+        'pdfScreen': (context) => PdfScreen(),
         'historicoScreen': (context) => HistoricoScreen(),
       },
     );

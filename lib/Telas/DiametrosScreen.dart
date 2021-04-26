@@ -1,9 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../Logica.dart';
 import '../pdfCreateandSave.dart';
 import '../widgetsTR.dart';
 import '../constants.dart';
-import 'package:universal_html/html.dart' as html;
 
 class DiametrosScreen extends StatefulWidget {
   @override
@@ -42,7 +42,7 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
               return ChooseButton(
                 size: size,
                 texto: '${trecho.nome} |\n${trecho.diametroEscolhido}',
-                changesizeWidth: 0.15,
+                changesizeWidth: 0.2,
                 changeTextsize: 12,
                 changePadding: 0.02,
                 onTap: () {
@@ -208,7 +208,7 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
         ChooseButton(
           size: size,
           texto: trechosGlobal[0].pinicial.toString(),
-          changesizeWidth: 0.15,
+          changesizeWidth: 0.2,
           changeTextsize: 12,
           changePadding: 0.05,
           changesize: 0.05,
@@ -302,13 +302,9 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                     size: size,
                     onTap: (String projeto) async {
                       nomedoProjeto = projeto;
+                      await openPDF(context);
                       Navigator.pop(context);
-                      final pdf = writeOnPdf();
-                      final bytes = await pdf.save();
-                      final blob = html.Blob([bytes], 'application/pdf');
-                      final url = html.Url.createObjectUrlFromBlob(blob);
-                      html.window.open(url, "_blank");
-                      html.Url.revokeObjectUrl(url);
+                      if (!kIsWeb) Navigator.pushNamed(context, 'pdfScreen');
                     },
                   ),
                 ),

@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
 import 'Logica.dart';
+import 'package:universal_html/html.dart' as html;
 
 String documentpath;
 writeOnPdf() {
@@ -63,4 +66,18 @@ Future<void> savePdf(pdf) async {
 Future<void> writeOnandSavePdf() async {
   var pdf = writeOnPdf();
   await savePdf(pdf);
+  print('oi');
+}
+
+Future<void> openPDF(BuildContext context) async {
+  if (kIsWeb) {
+    final pdf = writeOnPdf();
+    final bytes = await pdf.save();
+    final blob = html.Blob([bytes], 'application/pdf');
+    final url = html.Url.createObjectUrl(blob);
+    html.window.open(url, "_blank");
+    html.Url.revokeObjectUrl(url);
+  } else {
+    writeOnandSavePdf();
+  }
 }

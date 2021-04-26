@@ -85,8 +85,9 @@ class LoginButton extends StatelessWidget {
 }
 
 class LoginWithButton extends StatelessWidget {
-  LoginWithButton({@required this.size});
+  LoginWithButton({@required this.size, this.onTap});
   final Size size;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +102,7 @@ class LoginWithButton extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(500),
         child: FlatButton(
-          onPressed: () {},
+          onPressed: onTap,
           padding: EdgeInsets.zero,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -138,13 +139,15 @@ class FundoTrGas extends StatelessWidget {
     return Scaffold(
       backgroundColor: ktrigrey1,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: size.width * 0.1, vertical: size.height * 0.05),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: children),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.1, vertical: size.height * 0.05),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: children),
+          ),
         ),
       ),
     );
@@ -190,38 +193,41 @@ class FundoTrGas2 extends StatelessWidget {
     return Scaffold(
       backgroundColor: ktrigrey1,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: size.width * 0.1, vertical: size.height * 0.05),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                'TRGas',
-                style: ktextTRGasStyle,
-              ),
-              Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: size.height * 0.8,
-                    decoration: BoxDecoration(
-                        color: ktriblue,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [shadow0black, shadow0white]),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          top: size.height * 0.05, bottom: size.height * 0.02),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: children,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.1, vertical: size.height * 0.05),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'TRGas',
+                  style: ktextTRGasStyle,
+                ),
+                Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: size.height * 0.8,
+                      decoration: BoxDecoration(
+                          color: ktriblue,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [shadow0black, shadow0white]),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.05,
+                            bottom: size.height * 0.02),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: children,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -245,7 +251,7 @@ class ChooseButton extends StatelessWidget {
     this.size,
     this.padding = true,
     this.changesize = 0.1,
-    this.changeTextsize = 34,
+    this.changeTextsize = 30,
     this.changesizeWidth,
     this.changePadding = 0.1,
   }) : super(key: key);
@@ -337,7 +343,7 @@ class WriteButton extends StatelessWidget {
               controller: controller,
               obscureText: false,
               onChanged: onChanged,
-              style: ktextTituloStyle.copyWith(fontSize: 12),
+              style: ktextTituloStyle.copyWith(fontSize: 9),
               decoration: InputDecoration(
                 border: InputBorder.none,
                 labelText: labeltext,
@@ -406,7 +412,7 @@ class ChooseSmallerButton extends StatelessWidget {
             onPressed: onTap,
             child: Text(
               texto,
-              style: ktextTituloStyle.copyWith(fontSize: 12),
+              style: ktextTituloStyle.copyWith(fontSize: 9),
             ),
           ),
         ),
@@ -537,7 +543,7 @@ class _AddNomeScreenState extends State<AddNomeScreen> {
               style: ktextTituloStyle.copyWith(color: ktrigrey2, fontSize: 24)),
           TextField(
             textAlign: TextAlign.center,
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.name,
             obscureText: false,
             onChanged: (change) {
               nomefinal = change;

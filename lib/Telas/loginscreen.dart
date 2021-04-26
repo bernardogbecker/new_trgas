@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:new_trgas/Firebase.dart';
 import '../constants.dart';
 import '../widgetsTR.dart';
 
 class LoginScreen extends StatelessWidget {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _senha = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -41,11 +45,13 @@ class LoginScreen extends StatelessWidget {
                             size: size,
                             iconData: Icons.account_circle,
                             titulo: 'E-mail',
+                            controller: _email,
                           ),
                           WriteLoginButton(
                             size: size,
                             iconData: Icons.lock_open,
                             titulo: 'Senha',
+                            controller: _senha,
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(
@@ -56,14 +62,23 @@ class LoginScreen extends StatelessWidget {
                                 LoginButton(
                                   texto: 'Inscreva-se',
                                   size: size,
-                                  onTap: () {},
+                                  onTap: () {
+                                    registerToFirebase(
+                                      context: context,
+                                      senha: _senha.text,
+                                      email: _email.text,
+                                    );
+                                  },
                                 ),
                                 LoginButton(
                                   texto: 'Login',
                                   size: size,
                                   onTap: () {
-                                    Navigator.pushNamed(
-                                        context, 'chooseScreen');
+                                    loginToFirebase(
+                                      context: context,
+                                      senha: _senha.text,
+                                      email: _email.text,
+                                    );
                                   },
                                 ),
                               ],
@@ -72,7 +87,12 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    LoginWithButton(size: size),
+                    LoginWithButton(
+                      size: size,
+                      onTap: () {
+                        signInWithGoogle(context: context);
+                      },
+                    ),
                     LogoTr(size: size),
                   ],
                 ),
@@ -84,4 +104,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
