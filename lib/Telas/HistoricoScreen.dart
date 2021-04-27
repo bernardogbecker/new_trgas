@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:new_trgas/Logica.dart';
+import 'package:new_trgas/pdfCreateandSave.dart';
 import '../Firebase.dart';
 import '../widgetsTR.dart';
 import '../constants.dart';
@@ -62,13 +64,14 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
         StreamBuilder<QuerySnapshot>(
           stream: firestore.collection('Projetos').orderBy(filtro).snapshots(),
           builder: (context, snapshot) {
-            print(snapshot);
             return Container(
-              width: size.width * 0.6,
+              width: size.width * 0.8,
               height: size.height * 0.4,
               child: (snapshot.connectionState == ConnectionState.waiting)
                   ? Center(child: CircularProgressIndicator())
                   : ListView.builder(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.1),
                       itemBuilder: (context, index) {
                         var doc = snapshot.data.docs[index];
                         DateTime docDate = doc["Data"].toDate();
@@ -80,7 +83,11 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
                               padding: false,
                               nome: doc['Nome'],
                               dateTime: docDate,
-                              onTap: () {}),
+                              onTap: () async {
+                                docFirestore = doc;
+                                nomedoProjeto = doc["Nome"];
+                                await writeOnandSavePdfFromFirestore();
+                              }),
                         );
                       },
                       itemCount: snapshot.data.size,

@@ -4,6 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'Logica.dart';
+import 'Logica.dart';
+import 'Logica.dart';
+import 'Logica.dart';
+
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -11,12 +16,13 @@ Future<void> registerToFirebase(
     {String email, String senha, BuildContext context}) async {
   print(email);
   print(senha);
-
+  print(auth);
   try {
     await auth.createUserWithEmailAndPassword(email: email, password: senha);
     Navigator.pushNamed(context, 'chooseScreen');
     Alert(message: 'Email cadastrado com sucesso!').show();
   } catch (e) {
+    print(e);
     if (e.code == 'weak-password') {
       Alert(message: 'Senha muito fraca.').show();
     } else if (e.code == 'email-already-in-use') {
@@ -33,6 +39,7 @@ Future<void> loginToFirebase(
     await auth.signInWithEmailAndPassword(email: email, password: senha);
     Navigator.pushNamed(context, 'chooseScreen');
   } catch (e) {
+    print(e);
     switch (e.code) {
       case ('invalid-email'):
         Alert(message: 'Email incorreto.').show();
@@ -62,7 +69,22 @@ Future<void> signInWithGoogle({context}) async {
     await FirebaseAuth.instance.signInWithCredential(credential);
     Navigator.pushNamed(context, 'chooseScreen');
   } catch (e) {
-    print(e);
-    Alert(message: 'Erro, tente novamente!').show();
+    Alert(message: e.toString()).show();
   }
+}
+
+Future<void> saveFirestore() async {
+  Map<String, List> dados = {};
+  int i = 0;
+  for (DadosTrechos dado in trechosGlobal) {
+    dados[i.toString()] = dado.textstoShow;
+    i++;
+  }
+  await firestore.collection('Projetos').add(
+    {
+      'Data': DateTime.now(),
+      'Nome': nomedoProjeto,
+      'Dados': dados,
+    },
+  );
 }

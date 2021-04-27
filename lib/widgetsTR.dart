@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'Logica.dart';
+import 'constants.dart';
+import 'constants.dart';
+import 'constants.dart';
+import 'constants.dart';
 import 'constants.dart';
 
 class WriteLoginButton extends StatelessWidget {
@@ -165,7 +170,7 @@ class LogoTr extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         SizedBox(
-            width: size.width * 0.8 / 3,
+            height: size.height * 0.04,
             child: Image.asset(
               'imagens/Logo.png',
               fit: BoxFit.contain,
@@ -549,6 +554,23 @@ class _AddNomeScreenState extends State<AddNomeScreen> {
               nomefinal = change;
             },
             style: ktextTituloStyle.copyWith(fontSize: 12, color: ktrigrey2),
+          ),
+          Row(
+            children: [
+              Text(
+                'Salvar online?',
+                textAlign: TextAlign.center,
+                style:
+                    ktextTituloStyle.copyWith(color: ktrigrey2, fontSize: 16),
+              ),
+              Spacer(),
+              Checkbox(
+                value: saveOnline,
+                onChanged: (e) => setState(() {
+                  saveOnline = e;
+                }),
+              ),
+            ],
           ),
           ChooseButtonPressao(
             size: widget.size,

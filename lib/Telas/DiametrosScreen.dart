@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../Firebase.dart';
 import '../Logica.dart';
 import '../pdfCreateandSave.dart';
 import '../widgetsTR.dart';
@@ -303,8 +303,8 @@ class _DiametrosScreenState extends State<DiametrosScreen> {
                     onTap: (String projeto) async {
                       nomedoProjeto = projeto;
                       await openPDF(context);
+                      if (saveOnline) await saveFirestore();
                       Navigator.pop(context);
-                      if (!kIsWeb) Navigator.pushNamed(context, 'pdfScreen');
                     },
                   ),
                 ),

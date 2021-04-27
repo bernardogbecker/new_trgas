@@ -6,6 +6,7 @@ bool multiResidencial;
 bool gn;
 String nomedoProjeto;
 double porcentagemfinal;
+bool saveOnline = false;
 
 class DadosTrechos {
   String nome;
@@ -33,7 +34,7 @@ class DadosTrechos {
   double densidadeRelativa = 0;
   double leq = 0;
   double ltotal = 0;
-  List textstoShow = [];
+  List<String> textstoShow = [];
 
   void calculatetextstoShow() {
     textstoShow = [

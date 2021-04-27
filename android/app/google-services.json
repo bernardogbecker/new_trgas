@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "339430838534-0oguk4e82cc2qgfm7h6tghmbc9s9ob08.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.trichesEngenharia.trGas",
+            "certificate_hash": "fe029af9cead2497e3f608f88ec69b6c1017aad7"
+          }
+        },
+        {
           "client_id": "339430838534-6tthjiitg4fi9ba8svo8uavl8v2a438q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

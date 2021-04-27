@@ -11,7 +11,6 @@ import 'Telas/PotenciaInstaladaScreen.dart';
 import 'Telas/TesCotovelosScreen.dart';
 import 'Telas/TrechosScreen.dart';
 import 'Telas/loginscreen.dart';
-import 'Telas/pdfScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +39,6 @@ class TrGas extends StatelessWidget {
         'tesCotovelosScreen': (context) => TesCotovelosScreen(),
         'potenciaInstaladaScreen': (context) => PotenciaInstaladaScreen(),
         'diametrosScreen': (context) => DiametrosScreen(),
-        'pdfScreen': (context) => PdfScreen(),
         'historicoScreen': (context) => HistoricoScreen(),
       },
     );
