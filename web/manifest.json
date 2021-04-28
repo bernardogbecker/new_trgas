@@ -1,11 +1,11 @@
 {
-    "name": "new_trgas",
-    "short_name": "new_trgas",
+    "name": "trgas",
+    "short_name": "trgas",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "A melhor forma de dimensionar tubulações de gás.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

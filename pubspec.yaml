@@ -44,6 +44,8 @@ dependencies:
 
   #Alerta
   alert: ^1.0.1
+  adaptive_dialog: ^0.10.0+5
+
 
 
 dev_dependencies:

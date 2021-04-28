@@ -1,13 +1,11 @@
-import 'package:alert/alert.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 import 'Logica.dart';
-import 'Logica.dart';
-import 'Logica.dart';
-import 'Logica.dart';
+import 'package:alert/alert.dart';
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseAuth auth = FirebaseAuth.instance;
@@ -20,15 +18,30 @@ Future<void> registerToFirebase(
   try {
     await auth.createUserWithEmailAndPassword(email: email, password: senha);
     Navigator.pushNamed(context, 'chooseScreen');
-    Alert(message: 'Email cadastrado com sucesso!').show();
+    if (kIsWeb)
+      showOkAlertDialog(
+          context: context, title: 'Sucesso!', message: 'Usuário cadastrado.');
+    else
+      Alert(message: 'Email cadastrado com sucesso!').show();
   } catch (e) {
-    print(e);
     if (e.code == 'weak-password') {
-      Alert(message: 'Senha muito fraca.').show();
+      if (kIsWeb)
+        showOkAlertDialog(
+            context: context, title: 'Erro!', message: 'Senha muito fraca.');
+      else
+        Alert(message: 'Senha muito fraca.').show();
     } else if (e.code == 'email-already-in-use') {
-      Alert(message: 'Email já cadastrado.').show();
+      if (kIsWeb)
+        showOkAlertDialog(
+            context: context, title: 'Erro!', message: 'Email já cadastrado.');
+      else
+        Alert(message: 'Email já cadastrado.').show();
     } else {
-      Alert(message: 'Erro, tente novamente!').show();
+      if (kIsWeb)
+        showOkAlertDialog(
+            context: context, title: 'Erro!', message: 'tente novamente.');
+      else
+        Alert(message: 'Erro, tente novamente!').show();
     }
   }
 }
@@ -42,16 +55,34 @@ Future<void> loginToFirebase(
     print(e);
     switch (e.code) {
       case ('invalid-email'):
-        Alert(message: 'Email incorreto.').show();
+        if (kIsWeb)
+          showOkAlertDialog(
+              context: context, title: 'Erro!', message: 'Email incorreto.');
+        else
+          Alert(message: 'Email incorreto.').show();
         break;
       case ('wrong-password'):
-        Alert(message: 'Senha incorreta.').show();
+        if (kIsWeb)
+          showOkAlertDialog(
+              context: context, title: 'Erro!', message: 'Senha incorreta.');
+        else
+          Alert(message: 'Senha incorreta.').show();
         break;
       case ('user-not-found'):
-        Alert(message: 'Email não cadastrado.').show();
+        if (kIsWeb)
+          showOkAlertDialog(
+              context: context,
+              title: 'Erro!',
+              message: 'Email não cadastrado.');
+        else
+          Alert(message: 'Email não cadastrado.').show();
         break;
       default:
-        Alert(message: 'Erro, tente novamente').show();
+        if (kIsWeb)
+          showOkAlertDialog(
+              context: context, title: 'Erro!', message: 'Tente novamente.');
+        else
+          Alert(message: 'Erro, tente novamente').show();
         break;
     }
   }
@@ -69,7 +100,12 @@ Future<void> signInWithGoogle({context}) async {
     await FirebaseAuth.instance.signInWithCredential(credential);
     Navigator.pushNamed(context, 'chooseScreen');
   } catch (e) {
-    Alert(message: e.toString()).show();
+    print(e.toString());
+    if (kIsWeb)
+      showOkAlertDialog(
+          context: context, title: 'Erro!', message: e.toString());
+    else
+      Alert(message: 'Tente novamente.').show();
   }
 }
 

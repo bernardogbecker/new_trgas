@@ -83,6 +83,12 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
                               padding: false,
                               nome: doc['Nome'],
                               dateTime: docDate,
+                              onLongPress: () async {
+                                await firestore
+                                    .collection('Projetos')
+                                    .doc(doc.id)
+                                    .delete();
+                              },
                               onTap: () async {
                                 docFirestore = doc;
                                 nomedoProjeto = doc["Nome"];

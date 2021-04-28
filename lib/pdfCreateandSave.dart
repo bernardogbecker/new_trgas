@@ -84,7 +84,7 @@ Future<void> writeOnandSavePdf() async {
 
 Future<void> openPDF(BuildContext context) async {
   if (kIsWeb) {
-    final pdf = writeOnPdf(false);
+    pw.Document pdf = await writeOnPdf(false);
     final bytes = await pdf.save();
     final blob = html.Blob([bytes], 'application/pdf');
     final url = html.Url.createObjectUrl(blob);
@@ -131,6 +131,16 @@ List dadosParaTabela(bool comefromFirestore, String gasescolhido) {
 }
 
 Future<void> writeOnandSavePdfFromFirestore() async {
-  var pdf = await writeOnPdf(true);
-  await savePdf(pdf);
+  print(kIsWeb);
+  if (kIsWeb) {
+    final pdf = await writeOnPdf(true);
+    final bytes = await pdf.save();
+    final blob = html.Blob([bytes], 'application/pdf');
+    final url = html.Url.createObjectUrl(blob);
+    html.window.open(url, "_blank");
+    html.Url.revokeObjectUrl(url);
+  } else {
+    var pdf = await writeOnPdf(true);
+    await savePdf(pdf);
+  }
 }

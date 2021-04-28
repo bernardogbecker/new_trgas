@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Logica.dart';
 import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
 
 class WriteLoginButton extends StatelessWidget {
   const WriteLoginButton({
@@ -42,6 +38,7 @@ class WriteLoginButton extends StatelessWidget {
               controller: controller,
               obscureText: false,
               style: TextStyle(
+                fontSize: 10,
                 color: Colors.white,
               ),
               decoration: InputDecoration(
@@ -645,6 +642,7 @@ class HistoricoButton extends StatelessWidget {
   final double changeTextsize;
   final double changesizeWidth;
   final double changePadding;
+  final Function onLongPress;
   const HistoricoButton({
     Key key,
     this.nome,
@@ -656,6 +654,7 @@ class HistoricoButton extends StatelessWidget {
     this.changesizeWidth,
     this.changePadding = 0.1,
     this.dateTime,
+    this.onLongPress,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -675,6 +674,7 @@ class HistoricoButton extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: FlatButton(
+            onLongPress: onLongPress,
             onPressed: onTap,
             child: Padding(
               padding: const EdgeInsets.all(10),
