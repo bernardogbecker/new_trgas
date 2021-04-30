@@ -15,34 +15,46 @@ Future<void> registerToFirebase(
   print(email);
   print(senha);
   print(auth);
-  try {
-    await auth.createUserWithEmailAndPassword(email: email, password: senha);
-    Navigator.pushNamed(context, 'chooseScreen');
-    if (kIsWeb)
-      showOkAlertDialog(
-          context: context, title: 'Sucesso!', message: 'Usuário cadastrado.');
-    else
-      Alert(message: 'Email cadastrado com sucesso!').show();
-  } catch (e) {
-    if (e.code == 'weak-password') {
+  if (email != '' && senha != '') {
+    try {
+      await auth.createUserWithEmailAndPassword(email: email, password: senha);
+      Navigator.pushNamed(context, 'chooseScreen');
       if (kIsWeb)
         showOkAlertDialog(
-            context: context, title: 'Erro!', message: 'Senha muito fraca.');
+            context: context,
+            title: 'Sucesso!',
+            message: 'Usuário cadastrado.');
       else
-        Alert(message: 'Senha muito fraca.').show();
-    } else if (e.code == 'email-already-in-use') {
-      if (kIsWeb)
-        showOkAlertDialog(
-            context: context, title: 'Erro!', message: 'Email já cadastrado.');
-      else
-        Alert(message: 'Email já cadastrado.').show();
-    } else {
-      if (kIsWeb)
-        showOkAlertDialog(
-            context: context, title: 'Erro!', message: 'tente novamente.');
-      else
-        Alert(message: 'Erro, tente novamente!').show();
+        Alert(message: 'Email cadastrado com sucesso!').show();
+    } catch (e) {
+      if (e.code == 'weak-password') {
+        if (kIsWeb)
+          showOkAlertDialog(
+              context: context, title: 'Erro!', message: 'Senha muito fraca.');
+        else
+          Alert(message: 'Senha muito fraca.').show();
+      } else if (e.code == 'email-already-in-use') {
+        if (kIsWeb)
+          showOkAlertDialog(
+              context: context,
+              title: 'Erro!',
+              message: 'Email já cadastrado.');
+        else
+          Alert(message: 'Email já cadastrado.').show();
+      } else {
+        if (kIsWeb)
+          showOkAlertDialog(
+              context: context, title: 'Erro!', message: 'tente novamente.');
+        else
+          Alert(message: 'Erro, tente novamente!').show();
+      }
     }
+  } else {
+    showOkAlertDialog(
+        context: context,
+        title: 'Instruções:',
+        message:
+            'Digite o email e senha desejados e depois clique em inscreva-se para efetuar o registro.');
   }
 }
 
@@ -103,7 +115,10 @@ Future<void> signInWithGoogle({context}) async {
     print(e.toString());
     if (kIsWeb)
       showOkAlertDialog(
-          context: context, title: 'Erro!', message: e.toString());
+          context: context,
+          title: 'Erro!',
+          message:
+              'Verfique se seu navegador não está com cookies ou Pop-Ups bloqueados.');
     else
       Alert(message: 'Tente novamente.').show();
   }
